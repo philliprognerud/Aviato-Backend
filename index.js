@@ -13,9 +13,7 @@ app.post("/api/add-okta-user", (req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  ); // If needed
-  res.setHeader("Access-Control-Allow-Headers", "*"); // If needed
-  res.setHeader("Access-Control-Allow-Credentials", true); // If needed
+  );
 
   console.log(req.body);
 
@@ -46,21 +44,11 @@ app.post("/api/add-okta-user", (req, res, next) => {
     });
 });
 
-app.use(function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  ); // If needed
-  res.setHeader("Access-Control-Allow-Headers", "*"); // If needed
-  res.setHeader("Access-Control-Allow-Credentials", true); // If needed
-
-  // Pass to next layer of middleware
-  next();
-});
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 
 app.listen(8000, function() {
   console.log("serving on port 8000");
