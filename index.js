@@ -1,7 +1,17 @@
+const cors = require("cors");
 var express = require("express");
 var bodyParser = require("body-parser");
 var app = express();
 const oktaClient = require("./lib/oktaClient");
+
+app.use(cors());
+app.options("*", cors());
+
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 
 app.get("/test", (req, res) => {
   res.send("hello worldddd!!!!");
@@ -9,12 +19,6 @@ app.get("/test", (req, res) => {
 
 /* Create a new User (register). */
 app.post("/api/add-okta-user", (req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-
   console.log(req.body);
 
   const newUser = {
@@ -43,12 +47,6 @@ app.post("/api/add-okta-user", (req, res, next) => {
       // res.send(err);
     });
 });
-
-app.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
 
 app.listen(8000, function() {
   console.log("serving on port 8000");
