@@ -7,11 +7,8 @@ const oktaClient = require("./lib/oktaClient");
 app.use(cors());
 app.options("*", cors());
 
-app.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/test", (req, res) => {
   res.send("hello worldddd!!!!");
