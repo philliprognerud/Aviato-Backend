@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@okta/okta-sdk-nodejs": "^1.1.0",
+    "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "prettier": "^1.12.1"
   }

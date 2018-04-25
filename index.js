@@ -1,4 +1,5 @@
 var express = require("express");
+var bodyParser = require("body-parser");
 var app = express();
 const oktaClient = require("./lib/oktaClient");
 
@@ -57,6 +58,8 @@ app.use(function(req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+
+app.use(bodyParser.json());
 
 app.listen(8000, function() {
   console.log("serving on port 8000");
