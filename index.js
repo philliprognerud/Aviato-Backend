@@ -41,11 +41,9 @@ app.post("/api/add-okta-user", (req, res, next) => {
 });
 
 app.get("/user", (req, res) => {
-  if (req.userinfo) {
-    res.send(`Hi ${req.userinfo.name}!`);
-  } else {
-    res.send("Hi! 235252552525");
-  }
+  console.log(req.userinfo);
+  console.log(req.user);
+  console.log(req);
 });
 
 app.listen(8000, function() {
