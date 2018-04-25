@@ -19,7 +19,7 @@ app.get("/test", (req, res) => {
 
 /* Create a new User (register). */
 app.post("/api/add-okta-user", (req, res, next) => {
-  console.log(req.body);
+  console.log(req.body.firstName);
 
   const newUser = {
     profile: {
