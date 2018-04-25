@@ -10,10 +10,6 @@ app.options("*", cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/test", (req, res) => {
-  res.send("hello worldddd!!!!");
-});
-
 /* Create a new User (register). */
 app.post("/api/add-okta-user", (req, res, next) => {
   console.log(req.body);
@@ -39,10 +35,17 @@ app.post("/api/add-okta-user", (req, res, next) => {
       res.send(user);
     })
     .catch(err => {
-      console.log(err);
-      // res.status(400);
-      // res.send(err);
+      res.status(400);
+      res.send(err);
     });
+});
+
+app.get("/user", (req, res) => {
+  if (req.userinfo) {
+    res.send(`Hi ${req.userinfo.name}!`);
+  } else {
+    res.send("Hi! 235252552525");
+  }
 });
 
 app.listen(8000, function() {
