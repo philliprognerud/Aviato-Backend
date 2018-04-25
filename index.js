@@ -12,8 +12,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Create a new User (register). */
 app.post("/api/add-okta-user", (req, res, next) => {
-  console.log(req.body);
-
   const newUser = {
     profile: {
       firstName: req.body.firstName,
@@ -38,12 +36,6 @@ app.post("/api/add-okta-user", (req, res, next) => {
       res.status(400);
       res.send(err);
     });
-});
-
-app.get("/user", (req, res) => {
-  console.log(req.userinfo);
-  console.log(req.user);
-  console.log(req);
 });
 
 app.listen(8000, function() {
