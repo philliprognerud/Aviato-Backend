@@ -2,6 +2,7 @@ const cors = require("cors");
 var express = require("express");
 var bodyParser = require("body-parser");
 var app = express();
+const normalizePort = require('normalize-port');
 const oktaClient = require("./lib/oktaClient");
 
 app.use(cors());
@@ -42,6 +43,7 @@ app.post("/api/add-okta-user", (req, res, next) => {
     });
 });
 
-app.listen(8000, function() {
-  console.log("serving on port 8000");
-});
+var port = normalizePort(process.env.PORT || '8000');
+app.set('port', port);
+
+app.listen(port)
